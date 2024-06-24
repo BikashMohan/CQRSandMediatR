@@ -1,4 +1,4 @@
-﻿using CQRSAndMediatRDemo.Models;
+﻿using CQRSAndMediatR.Models;
 using CQRSAndMediatRDemo.Repositories;
 
 namespace CQRSAndMediatR.GetEmployee;
@@ -12,7 +12,7 @@ public class GetEmployeeListQuery
         _employeeRepository = employeeRepository;
     }
 
-    public async Task<List<Employee>> Execute()
+    public async Task<List<EmployeeReadModel>> Execute()
     {
         return await _employeeRepository.GetEmployeeListAsync();
     }

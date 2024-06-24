@@ -18,13 +18,7 @@ public class UpdateEmployeeCommand
     {
         var employeeDetails = await _employeeRepository.GetEmployeeByIdAsync(_employee.Id);
         if (employeeDetails == null)
-            return default;
-
-        employeeDetails.Name = _employee.Name;
-        employeeDetails.Email = _employee.Email;
-        employeeDetails.Address = _employee.Address;
-        employeeDetails.Age = _employee.Age;
-
-        return await _employeeRepository.UpdateEmployeeAsync(employeeDetails);
+            throw new Exception("Employee not exist");
+        return await _employeeRepository.UpdateEmployeeAsync(_employee);
     }
 }

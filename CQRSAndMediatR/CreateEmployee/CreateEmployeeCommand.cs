@@ -19,10 +19,12 @@ public class CreateEmployeeCommand
 
         var employeeDetails = new Employee()
         {
+            Id = _employee.Id,
             Name = _employee.Name,
             Email = _employee.Email,
             Address = _employee.Address,
-            Age = _employee.Age
+            Age = _employee.Age,
+            HireDate = _employee.HireDate,
         };
         await _employeeRepository.AddEmployeeAsync(employeeDetails);
         return employeeDetails;

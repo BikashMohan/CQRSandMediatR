@@ -1,4 +1,5 @@
-﻿using CQRSAndMediatRDemo.Data;
+﻿using CQRSAndMediatR.Models;
+using CQRSAndMediatRDemo.Data;
 using CQRSAndMediatRDemo.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,14 +28,34 @@ public class EmployeeRepository : IEmployeeRepository
         return await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<Employee> GetEmployeeByIdAsync(int Id)
+    public async Task<EmployeeReadModel> GetEmployeeByIdAsync(int Id)
     {
-        return await _dbContext.Employee.Where(x => x.Id == Id).FirstOrDefaultAsync();
+        return await _dbContext.Employee.Where(x => x.Id == Id)
+            .Select(e => new EmployeeReadModel
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Email = e.Email,
+                Address = e.Address,
+                Age = e.Age,
+                YearsOfService = DateTime.Now.Year - e.HireDate.Year
+            })
+            .FirstOrDefaultAsync();
     }
 
-    public async Task<List<Employee>> GetEmployeeListAsync()
+    public async Task<List<EmployeeReadModel>> GetEmployeeListAsync()
     {
-        return await _dbContext.Employee.ToListAsync();
+        return await _dbContext.Employee
+            .Select(e => new EmployeeReadModel
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Email = e.Email,
+                Address = e.Address,
+                Age = e.Age,
+                YearsOfService = DateTime.Now.Year - e.HireDate.Year
+            })
+            .ToListAsync();
     }
 
     public async Task<Employee> UpdateEmployeeAsync(Employee employeeDetails)

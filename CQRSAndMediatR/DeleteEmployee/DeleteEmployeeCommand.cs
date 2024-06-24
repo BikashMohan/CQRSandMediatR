@@ -16,7 +16,7 @@ public class DeleteEmployeeCommand
     {
         var employeeDetails = await _employeeRepository.GetEmployeeByIdAsync(_id);
         if (employeeDetails == null)
-            return default;
+            throw new Exception("Employee not exist");
 
         return await _employeeRepository.DeleteEmployeeAsync(employeeDetails.Id);
     }
