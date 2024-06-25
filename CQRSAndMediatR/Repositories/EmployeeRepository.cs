@@ -21,23 +21,18 @@ public class EmployeeRepository : IEmployeeRepository
         return result.Entity;
     }
 
-    public async Task<int> DeleteEmployeeAsync(int Id)
+    public async Task<int> DeleteEmployeeAsync(Guid Id)
     {
         var filteredData = _dbContext.Employee.Where(x => x.Id == Id).FirstOrDefault();
         _dbContext.Employee.Remove(filteredData);
         return await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<EmployeeReadModel> GetEmployeeByIdAsync(int Id)
+    public async Task<EmployeeReadModel> GetEmployeeByIdAsync(Guid Id)
     {
         return await _dbContext.Employee.Where(x => x.Id == Id)
-            .Select(e => new EmployeeReadModel
+            .Select(e => new EmployeeReadModel(e.Id, e.Name, e.Email, e.Address, e.Age)
             {
-                Id = e.Id,
-                Name = e.Name,
-                Email = e.Email,
-                Address = e.Address,
-                Age = e.Age,
                 YearsOfService = DateTime.Now.Year - e.HireDate.Year
             })
             .FirstOrDefaultAsync();
@@ -46,13 +41,8 @@ public class EmployeeRepository : IEmployeeRepository
     public async Task<List<EmployeeReadModel>> GetEmployeeListAsync()
     {
         return await _dbContext.Employee
-            .Select(e => new EmployeeReadModel
+            .Select(e => new EmployeeReadModel(e.Id, e.Name, e.Email, e.Address, e.Age)
             {
-                Id = e.Id,
-                Name = e.Name,
-                Email = e.Email,
-                Address = e.Address,
-                Age = e.Age,
                 YearsOfService = DateTime.Now.Year - e.HireDate.Year
             })
             .ToListAsync();

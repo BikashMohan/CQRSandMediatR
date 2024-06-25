@@ -24,8 +24,9 @@ namespace CQRSAndMediatR.Migrations
 
             modelBuilder.Entity("CQRSAndMediatRDemo.Models.Employee", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -36,8 +37,8 @@ namespace CQRSAndMediatR.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("HireDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

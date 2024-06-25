@@ -5,10 +5,10 @@ namespace CQRSAndMediatR.GetEmployee;
 
 public class GetEmployeeByIdQuery
 {
-    private int _employeeId;
+    private Guid _employeeId;
     private IEmployeeRepository _employeeRepository;
 
-    public GetEmployeeByIdQuery(int employeeId, IEmployeeRepository employeeRepository)
+    public GetEmployeeByIdQuery(Guid employeeId, IEmployeeRepository employeeRepository)
     {
         _employeeId = employeeId;
         _employeeRepository = employeeRepository;

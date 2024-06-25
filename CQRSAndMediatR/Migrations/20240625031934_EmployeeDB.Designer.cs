@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CQRSAndMediatR.Migrations
 {
     [DbContext(typeof(DbContextClass))]
-    [Migration("20240624175853_initial")]
-    partial class initial
+    [Migration("20240625031934_EmployeeDB")]
+    partial class EmployeeDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,8 +27,9 @@ namespace CQRSAndMediatR.Migrations
 
             modelBuilder.Entity("CQRSAndMediatRDemo.Models.Employee", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -39,8 +40,8 @@ namespace CQRSAndMediatR.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("HireDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

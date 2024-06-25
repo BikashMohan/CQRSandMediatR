@@ -4,9 +4,9 @@ namespace CQRSAndMediatR.DeleteEmployee;
 
 public class DeleteEmployeeCommandMessage : ICommandMessage<DeleteEmployeeCommandResult>
 {
-    public int Id;
+    public Guid Id;
 
-    public DeleteEmployeeCommandMessage(int id)
+    public DeleteEmployeeCommandMessage(Guid id)
     {
         Id = id;
     }

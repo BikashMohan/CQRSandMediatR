@@ -4,9 +4,9 @@ namespace CQRSAndMediatR.DeleteEmployee;
 
 public class DeleteEmployeeCommand
 {
-    private readonly int _id;
+    private readonly Guid _id;
     private readonly IEmployeeRepository _employeeRepository;
-    public DeleteEmployeeCommand(int id, IEmployeeRepository employeeRepository)
+    public DeleteEmployeeCommand(Guid id, IEmployeeRepository employeeRepository)
     {
         _id = id;
         _employeeRepository = employeeRepository;

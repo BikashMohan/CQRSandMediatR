@@ -4,8 +4,8 @@ namespace CQRSAndMediatR.GetEmployee;
 
 public class GetEmployeeByIdQueryMessage : IQueryMessage<GetEmployeeByIdQueryResult>
 {
-    public int EmployeeId { get; }
-    public GetEmployeeByIdQueryMessage(int employeeId)
+    public Guid EmployeeId { get; }
+    public GetEmployeeByIdQueryMessage(Guid employeeId)
     {
         EmployeeId = employeeId;
     }

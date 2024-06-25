@@ -17,15 +17,7 @@ public class CreateEmployeeCommand
     public async Task<Employee> Execute()
     {
 
-        var employeeDetails = new Employee()
-        {
-            Id = _employee.Id,
-            Name = _employee.Name,
-            Email = _employee.Email,
-            Address = _employee.Address,
-            Age = _employee.Age,
-            HireDate = _employee.HireDate,
-        };
+        var employeeDetails = new Employee(_employee.Name, _employee.Email, _employee.Address, _employee.Age, _employee.HireDate);
         await _employeeRepository.AddEmployeeAsync(employeeDetails);
         return employeeDetails;
 

@@ -28,7 +28,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet("employeeId")]
-    public async Task<IActionResult> GetEmployeeByIdAsync(int employeeId)
+    public async Task<IActionResult> GetEmployeeByIdAsync(Guid employeeId)
     {
         var message = new GetEmployeeByIdQueryMessage(employeeId);
 
@@ -58,7 +58,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteEmployeeAsync(int Id)
+    public async Task<IActionResult> DeleteEmployeeAsync(Guid Id)
     {
         var message = new DeleteEmployeeCommandMessage(Id);
         var response = await _mediator.Send(message);
